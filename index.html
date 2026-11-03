@@ -302,7 +302,14 @@
       const lightboxTitle = document.querySelector("#lightbox-title");
       const lightboxClose = document.querySelector("#lightbox-close");
 
+      const watcher = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-offscreen", !entry.isIntersecting);
+        });
+      });
+
       document.querySelectorAll(".player").forEach((player) => {
+        watcher.observe(player);
         const open = () => {
           const scene = player.querySelector(".scene");
           lightboxTitle.textContent = player.dataset.title;
