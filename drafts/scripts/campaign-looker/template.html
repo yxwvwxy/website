@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f1f3f4; font-family: Roboto, Arial, sans-serif; color: #202124; }
+  #shot { width: 1200px; margin: 24px; background: #fff; box-shadow: 0 1px 3px rgba(60, 64, 67, .25); }
+  header { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+           padding: 18px 28px; background: #1a73e8; color: #fff; }
+  h1 { margin: 0; font-size: 22px; font-weight: 500; }
+  .sub { margin-top: 3px; font-size: 12px; opacity: .85; }
+  .controls { display: flex; gap: 8px; }
+  .ctl { padding: 7px 12px; border-radius: 4px; background: #fff; color: #3c4043; font-size: 12px; white-space: nowrap; }
+  .ctl b { font-weight: 500; color: #202124; }
+  main { padding: 20px 28px 28px; display: grid; gap: 16px; }
+  .cards { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+  .card { border: 1px solid #dadce0; border-radius: 6px; padding: 12px 14px; }
+  .lbl { font-size: 12px; color: #5f6368; }
+  .val { margin: 4px 0 6px; font-size: 22px; font-weight: 500; }
+  .delta { font-size: 12px; font-weight: 500; }
+  .good { color: #188038; } .bad { color: #d93025; }
+  .vs { font-size: 11px; color: #80868b; }
+  .row { display: grid; gap: 16px; }
+  .r-2-1 { grid-template-columns: 2fr 1fr; }
+  .panel { border: 1px solid #dadce0; border-radius: 6px; padding: 14px 16px; }
+  .panel h2 { margin: 0 0 10px; font-size: 14px; font-weight: 500; }
+  .panel h2 span { font-weight: 400; color: #80868b; font-size: 12px; margin-left: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: right; font-weight: 500; color: #5f6368; font-size: 12px; padding: 8px 10px; border-bottom: 1px solid #dadce0; background: #f8f9fa; }
+  td { text-align: right; padding: 8px 10px; border-bottom: 1px solid #f1f3f4; font-variant-numeric: tabular-nums; }
+  th:nth-child(-n+2), td:nth-child(-n+2) { text-align: left; }
+  .plat th:nth-child(2), .plat td:nth-child(2) { text-align: right; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
+  .chart { position: relative; }
+  td.bar { position: relative; min-width: 180px; }
+  td.bar span { position: absolute; left: 10px; top: 6px; bottom: 6px; border-radius: 2px; }
+  td.bar b { position: relative; font-weight: 400; }
+</style>
+</head>
+<body>
+<div id="shot">
+  <header>
+    <div>
+      <h1>App Campaign Performance</h1>
+      <div class="sub">Ad platforms via Branch → BigQuery · sample data</div>
+    </div>
+    <div class="controls">
+      <div class="ctl">Date <b>Jul 6 – Oct 4, 2026</b> ▾</div>
+      <div class="ctl">Ad platform <b>All</b> ▾</div>
+      <div class="ctl">Device <b>All</b> ▾</div>
+    </div>
+  </header>
+  <main>
+    <div class="cards">{{CARDS}}</div>
+
+    <div class="row r-2-1">
+      <div class="panel"><h2>Cost and installs by week<span>all platforms</span></h2><div class="chart" style="height:250px"><canvas id="combo"></canvas></div></div>
+      <div class="panel"><h2>Cost share by platform</h2><div class="chart" style="height:250px"><canvas id="share"></canvas></div></div>
+    </div>
+
+    <div class="panel"><h2>CPI by week<span>by platform</span></h2><div class="chart" style="height:210px"><canvas id="cpi"></canvas></div></div>
+
+    <div class="panel"><h2>Platform summary</h2>
+      <table class="plat"><thead><tr><th>Platform</th><th>Cost</th><th>Installs</th><th>CPI</th><th>Purchases</th><th>CPP</th><th>Clicks</th><th>CPC</th></tr></thead>
+      <tbody>{{PLAT_ROWS}}</tbody></table>
+    </div>
+
+    <div class="panel"><h2>Campaigns by platform<span>CPI shaded from lowest (green) to highest (red)</span></h2>
+      <table><thead><tr><th>Platform</th><th>Campaign</th><th>Cost</th><th>Installs</th><th>CPI</th><th>Purchases</th><th>CPP</th><th>CPC</th></tr></thead>
+      <tbody>{{CAMP_ROWS}}</tbody></table>
+    </div>
+  </main>
+</div>
+<script>
+const D = {{DATA}};
+Chart.defaults.font.family = "Roboto, Arial, sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = "#5f6368";
+Chart.defaults.animation = false;
+Chart.defaults.maintainAspectRatio = false;
+const grid = { color: "#f1f3f4" };
+const usd = v => "$" + Number(v).toLocaleString();
+
+new Chart(document.getElementById("combo"), {
+  data: {
+    labels: D.weeks,
+    datasets: [
+      { type: "bar", label: "Cost", data: D.cost, backgroundColor: "#8ab4f8", yAxisID: "y", order: 2 },
+      { type: "line", label: "Installs", data: D.installs, borderColor: "#e8710a", backgroundColor: "#e8710a", yAxisID: "y1", tension: .3, pointRadius: 2, order: 1 },
+    ],
+  },
+  options: {
+    plugins: { legend: { position: "top", align: "end", labels: { boxWidth: 10 } } },
+    scales: {
+      x: { grid: { display: false } },
+      y: { grid, ticks: { callback: usd }, title: { display: true, text: "Cost" } },
+      y1: { position: "right", grid: { display: false }, title: { display: true, text: "Installs" } },
+    },
+  },
+});
+
+new Chart(document.getElementById("share"), {
+  type: "doughnut",
+  data: { labels: D.plats, datasets: [{ data: D.platCost, backgroundColor: D.colors, borderWidth: 2 }] },
+  options: {
+    cutout: "58%",
+    plugins: {
+      legend: { position: "bottom", labels: { boxWidth: 10, padding: 12,
+        generateLabels: chart => {
+          const sum = D.platCost.reduce((a, b) => a + b, 0);
+          return D.plats.map((p, i) => ({ text: `${p}  ${(D.platCost[i] / sum * 100).toFixed(0)}%`, fillStyle: D.colors[i], strokeStyle: D.colors[i], index: i }));
+        } } },
+    },
+  },
+});
+
+new Chart(document.getElementById("cpi"), {
+  type: "line",
+  data: {
+    labels: D.weeks,
+    datasets: D.plats.map((p, i) => ({ label: p, data: D.platWeeklyCpi[p], borderColor: D.colors[i], backgroundColor: D.colors[i], tension: .3, pointRadius: 2 })),
+  },
+  options: {
+    plugins: { legend: { position: "top", align: "end", labels: { boxWidth: 10 } } },
+    scales: { x: { grid: { display: false } }, y: { grid, ticks: { callback: v => "$" + v.toFixed(2) } } },
+  },
+});
+</script>
+</body>
+</html>
