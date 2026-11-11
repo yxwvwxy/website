@@ -173,8 +173,9 @@ Repo: https://github.com/yxwvwxy/kotc-marketing
 
 - Demo is the sample-data Looker Studio dashboard, "MCAT App Campaign Performance Dashboard Demo". Every number is simulated: about $350k of spend in one month across Facebook, TikTok, Google Search Ads and Apple Search Ads. It has six pages: Overview, Funnel, By Ad Partner, By Campaign, Health and Top Ads.
 - Summary notes: a daily and weekly Slack report on Meta app-install campaigns that flags ads with a high 7-day CPI; MMP (Branch) campaign data feeds the Looker Studio dashboard.
-- Images (finished in kotc-marketing/assets and copied into `images/`):
+- Images (finished in kotc-marketing/assets and copied into `images/`), 8 in all:
   - `images/campaign-slack-report.png`: Slack daily report with sample data
+  - `images/campaign-data-flow.png`: connection diagram (Meta → Branch → BigQuery → Looker Studio, and Meta → Slack)
   - `images/campaign-dashboard-overview.png`
   - `images/campaign-dashboard-funnel.png`
   - `images/campaign-dashboard-by-ad-partner.png`
