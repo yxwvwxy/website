@@ -92,7 +92,7 @@ Repo: https://github.com/yxwvwxy/weather-c-f
 ```
 Grocery Price Tracker
 Product type: Web app
-Summary: Compares the same product across six stores by unit price, so different pack sizes line up. Every week Claude Code checks prices on each store's own website; the tracker then flags price drops and publishes a read-only snapshot.
+Summary: Answers one question: where is this product cheapest? It compares the same product across six stores by unit price, so different pack sizes line up, and highlights the cheapest store. Every week Claude Code checks prices on each store's own website for the store location you chose.
 Tech Stack: Claude · Python · SQLite · Claude Code · Chart.js · GitHub Pages · launchd
 Demo: https://yxwvwxy.github.io/grocery/
 Repo: https://github.com/yxwvwxy/grocery
