@@ -56,7 +56,7 @@ const projects = [
     demo: "https://github.com/yxwvwxy/desktop-translator/releases/tag/v1.0.0", demoLabel: "Download app", repo: "desktop-translator",
     media: [{ type: "image", src: IMG + "dictionary-hero.png", width: 400, caption: "Lookup + recent words in one window" }] },
   { name: "Grocery Price Tracker", group: "Personal", type: "Web app",
-    summary: "Answers one question: where is this product cheapest? It compares the same product across six stores by unit price, so different pack sizes line up, and highlights the cheapest store. Every week Claude Code checks prices on each store's own website for the store location you chose.",
+    summary: "Compares the same product across six stores by unit price, so different pack sizes line up. Every week Claude Code checks prices on each store's own website for the chosen location; the tracker then shows where the product is cheapest and publishes a read-only snapshot.",
     stack: ["Claude", "Python", "SQLite", "Claude Code", "Chart.js", "GitHub Pages", "launchd"],
     demo: "https://yxwvwxy.github.io/grocery/", demoLabel: "Live demo", repo: "grocery",
     media: [
