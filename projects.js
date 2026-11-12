@@ -28,7 +28,7 @@ const projects = [
       { type: "image", src: IMG + "sorting-bundle-pull.png", caption: "Bundle & pull list" },
     ] },
   { name: "Shaken & Sorted", group: "Personal", type: "iOS app",
-    summary: "An iPhone cocktail journal: log what you drink and make, save recipes to try, and see every ingredient you've had, sorted by spirit. Photograph a bar menu and swipe over it like a highlighter to fill in a drink; after five ratings it maps your palate and suggests what to make next. Everything stays on the phone, with no account and no server.",
+    summary: "An iPhone cocktail journal: log what you drink and make, save recipes to try, and see every ingredient you've had. Photograph a bar menu and swipe over it like a highlighter to fill in a drink; after five ratings it maps your palate and suggests what to make next.",
     stack: ["Claude", "Swift", "SwiftUI", "SwiftData", "Vision", "Translation", "MapKit", "CoreLocation", "PhotosUI"],
     repo: "shaken-and-sorted",
     media: [
