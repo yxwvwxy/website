@@ -163,7 +163,7 @@ Repo: https://github.com/yxwvwxy/delivery-pivot
 ```
 Pickup Operation
 Product type: Web app with Supabase
-Summary: Turns a shared spreadsheet into a daily pickup desk for 150+ partners and 1,500+ trips. Dispatchers paste each carrier's list; the tool splits it into trips, matches nicknames to official stations, fills the day's log, and prices each run from a database of carriers, stations and rates.
+Summary: A structured database behind a web interface, replacing scattered spreadsheets where no one knew which mapping data was accurate and up to date. It runs a daily pickup desk for 150+ partners and 1,500+ trips, supporting $430k in monthly operations. It splits each carrier's list into trips, matches nicknames to official stations, fills the day's log, and prices each run from a database of carriers, stations and rates.
 Tech Stack: Cursor · Next.js · TypeScript · Supabase · Postgres · Apps Script · Google Sheets
 Demo: https://yxwvwxy.github.io/pickup-database/mock/demo-playback.html
 Repo: https://github.com/yxwvwxy/pickup-database
@@ -175,7 +175,7 @@ Repo: https://github.com/yxwvwxy/pickup-database
   3. **Fill**: write today's log, one partner per row.
   4. **Confirm**: check address, state, pallet count, and price (shared truck gets the shared rate, solo gets the solo rate), then cost per unit.
 - Database: carriers, stations, partners, pricing groups and rates, rules, schedules, and a daily cost summary.
-- Scale: 150+ partners, 1,500+ trips, about $450k monthly cost.
+- Scale: 150+ partners, 1,500+ trips, $430k in monthly operations (Vivienne, 2026-11-12).
 - Media: `images/pickup-demo.mp4` (copy of repo `docs/demo.mp4`, re-recorded 2026-11-11 with centered row numbers).
 
 ### Sorting Operation

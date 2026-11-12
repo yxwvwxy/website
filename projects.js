@@ -41,7 +41,7 @@ const projects = [
       { type: "image", src: IMG + "shaken-ingredients-palate.png", caption: "Ingredients and palate" },
     ] },
   { name: "Pickup Operation", group: "Work", type: "Web app with Supabase",
-    summary: "Turns a shared spreadsheet into a daily pickup desk for 150+ partners and 1,500+ trips. Dispatchers paste each carrier's list; the tool splits it into trips, matches nicknames to official stations, fills the day's log, and prices each run from a database of carriers, stations and rates.",
+    summary: "A structured database behind a web interface, replacing scattered spreadsheets where no one knew which mapping data was accurate and up to date. It runs a daily pickup desk for 150+ partners and 1,500+ trips, supporting $430k in monthly operations. It splits each carrier's list into trips, matches nicknames to official stations, fills the day's log, and prices each run from a database of carriers, stations and rates.",
     stack: ["Cursor", "Next.js", "TypeScript", "Supabase", "Postgres", "Apps Script", "Google Sheets"],
     demo: "https://yxwvwxy.github.io/pickup-database/mock/demo-playback.html", demoLabel: "Live demo", repo: "pickup-database",
     media: [{ type: "video", src: IMG + "pickup-demo.mp4", caption: "Paste → Parse → Fill → Confirm" }] },
