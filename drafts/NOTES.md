@@ -183,7 +183,7 @@ Repo: https://github.com/yxwvwxy/pickup-database
 ```
 Sorting Operation
 Product type: Data pipeline with live dashboard
-Summary: A Playwright scraper reads the night's sort volumes every 20 minutes and stores them in Supabase, together with a versioned map of which chute serves which city. A dashboard turns the data into city curves, hourly throughput, feed-station volumes and a daily pull list for chutes under 200 parcels.
+Summary: A data pipeline and live dashboard that makes sorting data visible to operations and the onsite sort team, helping plan and forecast staffing and transportation for a network of 30+ cities and 210k parcels a day. A Playwright scraper reads sort volumes every 20 minutes, 24/7, and stores them in Supabase, together with a versioned map of which chute serves which city. A dashboard turns the data into city curves, hourly throughput and feed-station volumes.
 Tech Stack: Cursor · Python · Playwright · Supabase · Postgres · Plotly · GitHub Pages
 Demo: https://yxwvwxy.github.io/sorting-database/ops-day-2026-09-05.html
 Repo: https://github.com/yxwvwxy/sorting-database
