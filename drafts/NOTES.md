@@ -5,7 +5,7 @@ Content collected for the project cards. The showcase is now built into the site
 ## Rules
 
 - Everything on the site is in English.
-- Summaries are TBD; polish them all in one pass later.
+- Summaries were written 2026-11-12 and are shown on the site; edit them in `projects.js` (and here).
 - Tech Stack = one-line tags joined with " · ".
 - First tag = the AI tool it was built with: **Claude** for Grocery Price Tracker and Shaken & Sorted, **Cursor** for everything else.
 - Product type follows an "X with Y" pattern where it fits.
@@ -63,7 +63,7 @@ Layout: a project list on the left that stays in place while the page scrolls. O
 ```
 Dictionary + Vocabulary Notebook
 Product type: macOS app
-Summary: TBD
+Summary: A dictionary pinned to the macOS desktop. Every word you look up joins your vocabulary notebook, so recent words keep coming back until they stick. It has pronunciation, definitions by part of speech with examples, a desktop widget, and one notebook synced across Macs through iCloud.
 Tech Stack: Cursor · Swift · AppKit · SwiftUI · WidgetKit · NaturalLanguage · AVFoundation · iCloud Drive · GitHub Actions
 Demo: https://github.com/yxwvwxy/desktop-translator/releases/tag/v1.0.0
 Repo: https://github.com/yxwvwxy/desktop-translator
@@ -77,7 +77,7 @@ Repo: https://github.com/yxwvwxy/desktop-translator
 ```
 Weather °C+°F
 Product type: macOS app
-Summary: TBD
+Summary: Weather for people who think in one temperature scale and keep running into the other: °F and °C side by side for now, the next few hours and the coming days. It follows your location or any city you choose, as a card pinned to the desktop or as small, medium and large widgets.
 Tech Stack: Cursor · Swift · SwiftUI · AppKit · WidgetKit · App Intents · CoreLocation · Open-Meteo
 Demo: https://github.com/yxwvwxy/weather-c-f/releases/tag/v1.0.0
 Repo: https://github.com/yxwvwxy/weather-c-f
@@ -92,7 +92,7 @@ Repo: https://github.com/yxwvwxy/weather-c-f
 ```
 Grocery Price Tracker
 Product type: Web app
-Summary: TBD
+Summary: Compares the same product across six stores by unit price, so different pack sizes line up. Every week Claude Code checks prices on each store's own website; the tracker then flags price drops and publishes a read-only snapshot.
 Tech Stack: Claude · Python · SQLite · Claude Code · Chart.js · GitHub Pages · launchd
 Demo: https://yxwvwxy.github.io/grocery/
 Repo: https://github.com/yxwvwxy/grocery
@@ -120,7 +120,7 @@ Repo: https://github.com/yxwvwxy/backup-tools
 ```
 Shaken & Sorted
 Product type: iOS app
-Summary: TBD
+Summary: An iPhone cocktail journal: log what you drink and make, save recipes to try, and see every ingredient you've had, sorted by spirit. Photograph a bar menu and swipe over it like a highlighter to fill in a drink; after five ratings it maps your palate and suggests what to make next. Everything stays on the phone, with no account and no server.
 Tech Stack: Claude · Swift · SwiftUI · SwiftData · Vision · Translation · MapKit · CoreLocation · PhotosUI
 Demo: none (no App Store or TestFlight build; the README explains how to build it with Xcode)
 Repo: https://github.com/yxwvwxy/shaken-and-sorted
@@ -134,7 +134,7 @@ Repo: https://github.com/yxwvwxy/shaken-and-sorted
 ```
 Storage Management
 Product type: Workflow automation with web UI
-Summary: TBD
+Summary: There is no API for moving parcels into storage, so a local worker clicks through the dispatch site the way a person would and walks each order to "in storage". Staff queue orders from a Google Sheets menu or a browser userscript, and a batch stops at the first unexpected status.
 Tech Stack: Cursor · Python · Playwright · Google Sheets API · Apps Script · Tampermonkey
 Demo: https://yxwvwxy.github.io/unimap-auto-inbound/demo/inbound-status.html
 Repo: https://github.com/yxwvwxy/unimap-auto-inbound
@@ -149,7 +149,7 @@ Repo: https://github.com/yxwvwxy/unimap-auto-inbound
 ```
 Delivery Operation
 Product type: Reporting automation with Power BI
-Summary: TBD
+Summary: Each night after 10 pm, the day's delivery results come in from the carrier API and feed a Power BI report of delivery, return and inactivity rates, broken down by DSP. The report then goes to the Teams group chats. Inactivity caused by drivers counts against the DSP; warehouse and transit delays are tracked separately.
 Tech Stack: Cursor · UniUni API · Power BI · Microsoft Teams · Apps Script · Google Sheets
 Demo: https://yxwvwxy.github.io/delivery-pivot/
 Repo: https://github.com/yxwvwxy/delivery-pivot
@@ -163,7 +163,7 @@ Repo: https://github.com/yxwvwxy/delivery-pivot
 ```
 Pickup Operation
 Product type: Web app with Supabase
-Summary: TBD
+Summary: Turns a shared spreadsheet into a daily pickup desk for 150+ partners and 1,500+ trips. Dispatchers paste each carrier's list; the tool splits it into trips, matches nicknames to official stations, fills the day's log, and prices each run from a database of carriers, stations and rates.
 Tech Stack: Cursor · Next.js · TypeScript · Supabase · Postgres · Apps Script · Google Sheets
 Demo: https://yxwvwxy.github.io/pickup-database/mock/demo-playback.html
 Repo: https://github.com/yxwvwxy/pickup-database
@@ -183,7 +183,7 @@ Repo: https://github.com/yxwvwxy/pickup-database
 ```
 Sorting Operation
 Product type: Data pipeline with live dashboard
-Summary: TBD
+Summary: A Playwright scraper reads the night's sort volumes every 20 minutes and stores them in Supabase, together with a versioned map of which chute serves which city. A dashboard turns the data into city curves, hourly throughput, feed-station volumes and a daily pull list for chutes under 200 parcels.
 Tech Stack: Cursor · Python · Playwright · Supabase · Postgres · Plotly · GitHub Pages
 Demo: https://yxwvwxy.github.io/sorting-database/ops-day-2026-09-05.html
 Repo: https://github.com/yxwvwxy/sorting-database
@@ -198,7 +198,7 @@ Repo: https://github.com/yxwvwxy/sorting-database
 ```
 Campaign Automation
 Product type: Marketing data pipeline with BigQuery
-Summary: TBD
+Summary: A daily and weekly Slack report on Meta app-install campaigns that flags ads whose 7-day cost per install runs above target. Campaign data from the Branch MMP flows through BigQuery into a Looker Studio dashboard covering cost, the install-to-purchase funnel, ad partners, campaigns and top ads.
 Tech Stack: Cursor · Python · Meta Marketing API · Branch · Playwright · BigQuery · Looker Studio · Slack · GitHub Actions
 Demo: https://lookerstudio.google.com/reporting/41c3492f-5bfd-42f8-bf50-79a8c8802ca2
 Repo: https://github.com/yxwvwxy/kotc-marketing
@@ -219,6 +219,5 @@ Repo: https://github.com/yxwvwxy/kotc-marketing
 
 ## Next steps
 
-1. Polish every Summary in English in one pass.
-2. Compress large images, since some PNGs are over 1 MB.
-3. Fill in the intro (name, tagline, city) and the personal links at the top of `index.html`; they are still placeholders.
+1. Compress large images, since some PNGs are over 1 MB.
+2. Fill in the intro (name, tagline, city) and the personal links at the top of `index.html`; they are still placeholders.
