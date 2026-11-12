@@ -149,7 +149,7 @@ Repo: https://github.com/yxwvwxy/unimap-auto-inbound
 ```
 Delivery Operation
 Product type: Reporting automation with Power BI
-Summary: Each night after 10 pm, the day's delivery results come in from the carrier API and feed a Power BI report of delivery, return and inactivity rates, broken down by DSP. The report then goes to the Teams group chats. Inactivity caused by drivers counts against the DSP; warehouse and transit delays are tracked separately.
+Summary: Each night after 10 pm, parcel status updates are pulled from the UniUni API and feed a Power BI report of delivery, return and inactivity rates, broken down by DSP. The report then goes to the Teams group chats. Inactivity caused by drivers counts against the DSP; warehouse and transit delays are tracked separately.
 Tech Stack: Cursor · UniUni API · Power BI · Microsoft Teams · Apps Script · Google Sheets
 Demo: https://yxwvwxy.github.io/delivery-pivot/
 Repo: https://github.com/yxwvwxy/delivery-pivot

@@ -69,7 +69,7 @@ const projects = [
     demo: "https://github.com/yxwvwxy/weather-c-f/releases/tag/v1.0.0", demoLabel: "Download app", repo: "weather-c-f",
     media: [{ type: "image", src: IMG + "weather-widgets.png", caption: "Large, medium and small widgets" }] },
   { name: "Delivery Operation", group: "Work", type: "Reporting automation with Power BI",
-    summary: "Each night after 10 pm, the day's delivery results come in from the carrier API and feed a Power BI report of delivery, return and inactivity rates, broken down by DSP. The report then goes to the Teams group chats. Inactivity caused by drivers counts against the DSP; warehouse and transit delays are tracked separately.",
+    summary: "Each night after 10 pm, parcel status updates are pulled from the UniUni API and feed a Power BI report of delivery, return and inactivity rates, broken down by DSP. The report then goes to the Teams group chats. Inactivity caused by drivers counts against the DSP; warehouse and transit delays are tracked separately.",
     stack: ["Cursor", "UniUni API", "Power BI", "Microsoft Teams", "Apps Script", "Google Sheets"],
     repo: "delivery-pivot",
     media: [{ type: "image", src: IMG + "delivery-report.png", caption: "Daily performance report" }] },
