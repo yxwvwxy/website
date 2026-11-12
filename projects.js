@@ -58,6 +58,11 @@ const projects = [
       { type: "image", src: IMG + "grocery-compare.png", caption: "Unit prices across six stores" },
       { type: "image", src: IMG + "grocery-detail.png", caption: "Bananas · every item ranked + price history" },
     ] },
+  { name: "Delivery Operation", group: "Work", type: "Reporting automation with Power BI",
+    summary: "Each night after 10 pm, parcel status updates are pulled from the UniUni API and feed a Power BI report of delivery, return and inactivity rates, broken down by DSP. The report then goes to the Teams group chats. Inactivity caused by drivers counts against the DSP; warehouse and transit delays are tracked separately.",
+    stack: ["Cursor", "UniUni API", "Power BI", "Microsoft Teams", "Apps Script", "Google Sheets"],
+    repo: "delivery-pivot",
+    media: [{ type: "image", src: IMG + "delivery-report.png", caption: "Daily performance report" }] },
   { name: "Dictionary + Vocabulary Notebook", group: "Personal", type: "macOS app",
     summary: "A dictionary pinned to the macOS desktop. Every word you look up joins your vocabulary notebook, so recent words keep coming back until they stick. It has pronunciation, definitions by part of speech with examples, a desktop widget, and one notebook synced across Macs through iCloud.",
     stack: ["Cursor", "Swift", "AppKit", "SwiftUI", "WidgetKit", "NaturalLanguage", "AVFoundation", "iCloud Drive", "GitHub Actions"],
@@ -68,11 +73,6 @@ const projects = [
     stack: ["Cursor", "Swift", "SwiftUI", "AppKit", "WidgetKit", "App Intents", "CoreLocation", "Open-Meteo"],
     demo: "https://github.com/yxwvwxy/weather-c-f/releases/tag/v1.0.0", demoLabel: "Download app", repo: "weather-c-f",
     media: [{ type: "image", src: IMG + "weather-widgets.png", caption: "Large, medium and small widgets" }] },
-  { name: "Delivery Operation", group: "Work", type: "Reporting automation with Power BI",
-    summary: "Each night after 10 pm, parcel status updates are pulled from the UniUni API and feed a Power BI report of delivery, return and inactivity rates, broken down by DSP. The report then goes to the Teams group chats. Inactivity caused by drivers counts against the DSP; warehouse and transit delays are tracked separately.",
-    stack: ["Cursor", "UniUni API", "Power BI", "Microsoft Teams", "Apps Script", "Google Sheets"],
-    repo: "delivery-pivot",
-    media: [{ type: "image", src: IMG + "delivery-report.png", caption: "Daily performance report" }] },
 ];
 
 const N = projects.length;

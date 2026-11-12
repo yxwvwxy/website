@@ -48,9 +48,9 @@ Ranked by the size of the project itself, mixed Work and Personal:
 4. Pickup Operation
 5. Storage Management
 6. Grocery Price Tracker
-7. Dictionary + Vocabulary Notebook
-8. Weather °C+°F
-9. Delivery Operation
+7. Delivery Operation
+8. Dictionary + Vocabulary Notebook
+9. Weather °C+°F
 
 Sync & Backup and Personal Website are not shown on the site.
 
