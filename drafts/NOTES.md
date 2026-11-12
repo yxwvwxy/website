@@ -47,8 +47,8 @@ Ranked by the size of the project itself, mixed Work and Personal:
 3. Shaken & Sorted
 4. Pickup Operation
 5. Storage Management
-6. Dictionary + Vocabulary Notebook
-7. Grocery Price Tracker
+6. Grocery Price Tracker
+7. Dictionary + Vocabulary Notebook
 8. Weather °C+°F
 9. Delivery Operation
 
