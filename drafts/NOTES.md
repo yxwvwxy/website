@@ -35,7 +35,7 @@ Repo: https://github.com/yxwvwxy/<repo>
 | 7 | Pickup Operation | Work | pickup-database | Confirmed |
 | 8 | Sorting Operation | Work | sorting-database | Confirmed, images approved |
 | 9 | Campaign Automation | Work | kotc-marketing | Confirmed, images ready |
-| 10 | Shaken & Sorted | Personal | shaken-and-sorted | **Not started** (first tag: Claude) |
+| 10 | Shaken & Sorted | Personal | shaken-and-sorted | Confirmed, images added (2026-11-12) |
 | 11 | Personal Website | Personal | website | **Removed from the showcase** (2026-11-11) |
 
 ## Display order (agreed 2026-11-11)
@@ -114,6 +114,20 @@ Repo: https://github.com/yxwvwxy/backup-tools
 
 - Summary notes: every day at 14:00 on both Macs, it backs up every repo in ~/Projects. For each one it fetches, commits local changes, rebases if behind, and pushes if ahead. Missed runs catch up on the next wake. It works offline and writes a log.
 - Demo idea: a sanitized terminal screenshot of the log.
+
+### Shaken & Sorted
+
+```
+Shaken & Sorted
+Product type: iOS app
+Summary: TBD
+Tech Stack: Claude · Swift · SwiftUI · SwiftData · Vision · Translation · MapKit · CoreLocation · PhotosUI
+Demo: none (no App Store or TestFlight build; the README explains how to build it with Xcode)
+Repo: https://github.com/yxwvwxy/shaken-and-sorted
+```
+
+- Summary notes: log the cocktails you drink and make, save recipes to try, and see every ingredient you've had, sorted by kind. Everything stays on the phone: no account, no server, no API key. Free on-device menu scan (swipe over words like a highlighter for name, ingredients and price), nearby bars, a Recipes tab with Mark as Made, and Your Palate (flavor radar, favorite spirits, recipes to try next) after 5 rated drinks.
+- Images: the 7 section pictures from the repo's `docs/images/`, copied to `images/shaken-*.png` (Drinks, A drink, Search and filter, Menu scan, Places, Recipes, Ingredients and palate). Menu scan and Ingredients show small Chinese ingredient names, which is an app feature.
 
 ### Storage Management
 
@@ -205,7 +219,6 @@ Repo: https://github.com/yxwvwxy/kotc-marketing
 
 ## Next steps
 
-1. Organize Shaken & Sorted.
-2. Polish every Summary in English in one pass.
-3. Compress large images, since some PNGs are over 1 MB.
-4. Fill in the intro (name, tagline, city) and the personal links at the top of `index.html`; they are still placeholders.
+1. Polish every Summary in English in one pass.
+2. Compress large images, since some PNGs are over 1 MB.
+3. Fill in the intro (name, tagline, city) and the personal links at the top of `index.html`; they are still placeholders.
