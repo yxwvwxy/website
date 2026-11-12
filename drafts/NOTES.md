@@ -134,7 +134,7 @@ Repo: https://github.com/yxwvwxy/shaken-and-sorted
 ```
 Storage Management
 Product type: Workflow automation with web UI
-Summary: There is no API for moving parcels into storage, so a local worker clicks through the dispatch site the way a person would and walks each order to "in storage". Staff queue orders from a Google Sheets menu or a browser userscript, and a batch stops at the first unexpected status.
+Summary: Manages parcels from storage to redelivery. Inbound: instead of manually clicking through each order, it updates every parcel's status automatically to the desired status. Box assignment: records which physical box each parcel is kept in, by storage code. Locate: uses that record to find a parcel. Search a tracking number or storage code to see its box, and the found parcel is updated for redelivery.
 Tech Stack: Cursor · Python · Playwright · Google Sheets API · Apps Script · Tampermonkey
 Demo: https://yxwvwxy.github.io/unimap-auto-inbound/demo/inbound-status.html
 Repo: https://github.com/yxwvwxy/unimap-auto-inbound

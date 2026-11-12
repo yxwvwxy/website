@@ -46,7 +46,7 @@ const projects = [
     demo: "https://yxwvwxy.github.io/pickup-database/mock/demo-playback.html", demoLabel: "Live demo", repo: "pickup-database",
     media: [{ type: "video", src: IMG + "pickup-demo.mp4", caption: "Paste → Parse → Fill → Confirm" }] },
   { name: "Storage Management", group: "Work", type: "Workflow automation with web UI",
-    summary: "There is no API for moving parcels into storage, so a local worker clicks through the dispatch site the way a person would and walks each order to \"in storage\". Staff queue orders from a Google Sheets menu or a browser userscript, and a batch stops at the first unexpected status.",
+    summary: "Manages parcels from storage to redelivery. Inbound: instead of manually clicking through each order, it updates every parcel's status automatically to the desired status. Box assignment: records which physical box each parcel is kept in, by storage code. Locate: uses that record to find a parcel. Search a tracking number or storage code to see its box, and the found parcel is updated for redelivery.",
     stack: ["Cursor", "Python", "Playwright", "Google Sheets API", "Apps Script", "Tampermonkey"],
     demo: "https://yxwvwxy.github.io/unimap-auto-inbound/demo/inbound-status.html", demoLabel: "Live demo", repo: "unimap-auto-inbound",
     media: [{ type: "video", src: IMG + "storage-inbound.mp4", caption: "Each order walks to storage" }] },
