@@ -4,7 +4,7 @@ const IMG = "images/";
 // Order = the agreed ranking. Each project lists its own media: type "image" | "video".
 const projects = [
   { name: "Campaign Automation", group: "Work", type: "Marketing data pipeline with BigQuery",
-    summary: "A daily and weekly Slack report on Meta app-install campaigns that flags ads whose 7-day cost per install runs above target. Campaign data from the Branch MMP flows through BigQuery into a Looker Studio dashboard covering cost, the install-to-purchase funnel, ad partners, campaigns and top ads.",
+    summary: "A daily marketing data pipeline supporting cross-channel paid advertising reporting. Campaign data from the Branch MMP flows through BigQuery into a Looker Studio dashboard covering cost, the install-to-purchase funnel, ad partners, campaigns and top ads. It sends daily Slack reports on app install campaigns, flagging underperforming ads.",
     stack: ["Cursor", "Python", "Meta Marketing API", "Branch", "Playwright", "BigQuery", "Looker Studio", "Slack", "GitHub Actions"],
     demo: "https://lookerstudio.google.com/reporting/41c3492f-5bfd-42f8-bf50-79a8c8802ca2", demoLabel: "Demo dashboard", repo: "kotc-marketing", startMedia: 3, // opens on "By ad partner"
     media: [

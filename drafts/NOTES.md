@@ -198,7 +198,7 @@ Repo: https://github.com/yxwvwxy/sorting-database
 ```
 Campaign Automation
 Product type: Marketing data pipeline with BigQuery
-Summary: A daily and weekly Slack report on Meta app-install campaigns that flags ads whose 7-day cost per install runs above target. Campaign data from the Branch MMP flows through BigQuery into a Looker Studio dashboard covering cost, the install-to-purchase funnel, ad partners, campaigns and top ads.
+Summary: A daily marketing data pipeline supporting cross-channel paid advertising reporting. Campaign data from the Branch MMP flows through BigQuery into a Looker Studio dashboard covering cost, the install-to-purchase funnel, ad partners, campaigns and top ads. It sends daily Slack reports on app install campaigns, flagging underperforming ads.
 Tech Stack: Cursor · Python · Meta Marketing API · Branch · Playwright · BigQuery · Looker Studio · Slack · GitHub Actions
 Demo: https://lookerstudio.google.com/reporting/41c3492f-5bfd-42f8-bf50-79a8c8802ca2
 Repo: https://github.com/yxwvwxy/kotc-marketing
