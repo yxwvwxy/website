@@ -1,0 +1,171 @@
+// Project showcase: a list of projects on the left, the chosen one on the right.
+const GH = "https://github.com/yxwvwxy/";
+const IMG = "images/";
+// Order = the agreed ranking. Each project lists its own media: type "image" | "video".
+const projects = [
+  { name: "Campaign Automation", group: "Work", type: "Marketing data pipeline with BigQuery",
+    stack: ["Cursor", "Python", "Meta Marketing API", "Branch", "Playwright", "BigQuery", "Looker Studio", "Slack", "GitHub Actions"],
+    demo: "https://lookerstudio.google.com/reporting/41c3492f-5bfd-42f8-bf50-79a8c8802ca2", demoLabel: "Demo dashboard", repo: "kotc-marketing", startMedia: 3, // opens on "By ad partner"
+    media: [
+      { type: "image", src: IMG + "campaign-slack-report.png", caption: "Slack daily report" },
+      { type: "image", src: IMG + "campaign-dashboard-overview.png", caption: "Dashboard · Overview" },
+      { type: "image", src: IMG + "campaign-dashboard-funnel.png", caption: "Dashboard · Funnel" },
+      { type: "image", src: IMG + "campaign-dashboard-by-ad-partner.png", caption: "Dashboard · By ad partner" },
+      { type: "image", src: IMG + "campaign-dashboard-by-campaign.png", caption: "Dashboard · By campaign" },
+      { type: "image", src: IMG + "campaign-dashboard-health.png", caption: "Dashboard · Health" },
+      { type: "image", src: IMG + "campaign-dashboard-top-ads.png", caption: "Dashboard · Top ads" },
+      { type: "image", src: IMG + "campaign-data-flow.png", caption: "How the data connects" },
+    ] },
+  { name: "Sorting Operation", group: "Work", type: "Data pipeline with live dashboard",
+    stack: ["Cursor", "Python", "Playwright", "Supabase", "Postgres", "Plotly", "GitHub Pages"],
+    demo: "https://yxwvwxy.github.io/sorting-database/ops-day-2026-09-05.html", demoLabel: "Live demo", repo: "sorting-database",
+    media: [
+      { type: "image", src: IMG + "sorting-opsday-city.png", caption: "9/5 ops day · City / hub" },
+      { type: "image", src: IMG + "sorting-opsday-feed.png", caption: "9/5 ops day · Feed & hourly" },
+      { type: "image", src: IMG + "sorting-chute-count.png", caption: "Chute counts" },
+      { type: "image", src: IMG + "sorting-bundle-pull.png", caption: "Bundle & pull list" },
+    ] },
+  { name: "Shaken & Sorted", group: "Personal", type: "iOS app", stack: ["Claude"], repo: "shaken-and-sorted", media: [] },
+  { name: "Pickup Operation", group: "Work", type: "Web app with Supabase",
+    stack: ["Cursor", "Next.js", "TypeScript", "Supabase", "Postgres", "Apps Script", "Google Sheets"],
+    demo: "https://yxwvwxy.github.io/pickup-database/mock/demo-playback.html", demoLabel: "Live demo", repo: "pickup-database",
+    media: [{ type: "video", src: IMG + "pickup-demo.mp4", caption: "Paste → Parse → Fill → Confirm" }] },
+  { name: "Storage Management", group: "Work", type: "Workflow automation with web UI",
+    stack: ["Cursor", "Python", "Playwright", "Google Sheets API", "Apps Script", "Tampermonkey"],
+    demo: "https://yxwvwxy.github.io/unimap-auto-inbound/demo/inbound-status.html", demoLabel: "Live demo", repo: "unimap-auto-inbound",
+    media: [{ type: "video", src: IMG + "storage-inbound.mp4", caption: "Each order walks to storage" }] },
+  { name: "Dictionary + Vocabulary Notebook", group: "Personal", type: "macOS app",
+    stack: ["Cursor", "Swift", "AppKit", "SwiftUI", "WidgetKit", "NaturalLanguage", "AVFoundation", "iCloud Drive", "GitHub Actions"],
+    demo: "https://github.com/yxwvwxy/desktop-translator/releases/tag/v1.0.0", demoLabel: "Download app", repo: "desktop-translator",
+    media: [{ type: "image", src: IMG + "dictionary-hero.png", width: 400, caption: "Lookup + recent words in one window" }] },
+  { name: "Grocery Price Tracker", group: "Personal", type: "Web app",
+    stack: ["Claude", "Python", "SQLite", "Claude Code", "Chart.js", "GitHub Pages", "launchd"],
+    demo: "https://yxwvwxy.github.io/grocery/", demoLabel: "Live demo", repo: "grocery",
+    media: [
+      { type: "image", src: IMG + "grocery-compare.png", caption: "Unit prices across six stores" },
+      { type: "image", src: IMG + "grocery-detail.png", caption: "Bananas · every item ranked + price history" },
+    ] },
+  { name: "Weather °C+°F", group: "Personal", type: "macOS app",
+    stack: ["Cursor", "Swift", "SwiftUI", "AppKit", "WidgetKit", "App Intents", "CoreLocation", "Open-Meteo"],
+    demo: "https://github.com/yxwvwxy/weather-c-f/releases/tag/v1.0.0", demoLabel: "Download app", repo: "weather-c-f",
+    media: [{ type: "image", src: IMG + "weather-widgets.png", caption: "Large, medium and small widgets" }] },
+  { name: "Delivery Operation", group: "Work", type: "Reporting automation with Power BI",
+    stack: ["Cursor", "UniUni API", "Power BI", "Microsoft Teams", "Apps Script", "Google Sheets"],
+    repo: "delivery-pivot",
+    media: [{ type: "image", src: IMG + "delivery-report.png", caption: "Daily performance report" }] },
+];
+
+const N = projects.length;
+const pad = (n) => String(n).padStart(2, "0");
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const list = document.getElementById("pj-list");
+const center = document.getElementById("pj-center");
+let current = -1;
+
+const rows = projects.map((p, i) => {
+  const li = document.createElement("li");
+  li.innerHTML = `<button type="button"><span class="pj-num">${pad(i + 1)}</span><span class="pj-txt"><span class="pj-name"></span><span class="pj-ptype"></span></span><span class="pj-grp">${p.group}</span></button>`;
+  li.querySelector(".pj-name").textContent = p.name;
+  li.querySelector(".pj-ptype").textContent = p.type;
+  li.firstChild.addEventListener("click", () => select(i));
+  list.appendChild(li);
+  return li.firstChild;
+});
+
+function select(i) {
+  i = ((i % N) + N) % N;
+  if (i === current) return;
+  current = i;
+  rows.forEach((b, j) => b.setAttribute("aria-current", j === i));
+  rows[i].scrollIntoView({ block: "nearest", inline: "nearest", behavior: reduce ? "auto" : "smooth" });
+  render();
+}
+
+// ↑ ↓ move through the list while it has focus (wrapping at the ends); elsewhere they scroll the page
+list.addEventListener("keydown", (e) => {
+  if (e.altKey || e.ctrlKey || e.metaKey) return;
+  if (e.key === "ArrowDown") { e.preventDefault(); select(current + 1); rows[current].focus({ preventScroll: true }); }
+  if (e.key === "ArrowUp") { e.preventDefault(); select(current - 1); rows[current].focus({ preventScroll: true }); }
+});
+
+/* ---------- right panel ---------- */
+function render() {
+  const p = projects[current];
+  document.getElementById("pj-group").textContent = `${p.group} project`;
+  document.getElementById("pj-title").textContent = p.name;
+  document.getElementById("pj-type").textContent = p.type;
+  const summary = document.getElementById("pj-summary");
+  summary.textContent = p.summary || "Summary coming soon.";
+  summary.classList.toggle("is-tbd", !p.summary);
+  document.getElementById("pj-tags").innerHTML = p.stack.map((t) => `<li>${t}</li>`).join("");
+  const links = [];
+  if (p.demo) links.push(`<a href="${p.demo}" target="_blank" rel="noopener">${p.demoLabel || "Demo"} ↗</a>`);
+  links.push(`<a href="${GH + p.repo}" target="_blank" rel="noopener">Repo ↗</a>`);
+  document.getElementById("pj-links").innerHTML = links.join("");
+  showMedia(p, p.startMedia || 0);
+  center.classList.remove("is-swap");
+  void center.offsetWidth;
+  center.classList.add("is-swap");
+}
+
+function mediaEl(m, thumb) {
+  if (m.type === "video") {
+    const v = document.createElement("video");
+    v.src = m.src;
+    v.muted = true;
+    v.loop = true;
+    v.playsInline = true;
+    if (!thumb) { v.autoplay = !reduce; v.controls = reduce; } else v.preload = "metadata";
+    return v;
+  }
+  const img = new Image();
+  img.src = m.src;
+  img.alt = m.caption || "";
+  return img;
+}
+
+function showMedia(p, k) {
+  const frame = document.getElementById("pj-frame");
+  const strip = document.getElementById("pj-strip");
+  const caption = document.getElementById("pj-caption");
+  frame.innerHTML = "";
+  strip.innerHTML = "";
+  frame.className = "pj-frame";
+  if (!p.media.length) {
+    const initials = p.name.split(/[\s&+]+/).filter(Boolean).slice(0, 2).map((s) => s[0]).join("");
+    frame.classList.add("is-empty");
+    frame.innerHTML = `<div class="pj-ph">${initials}</div>`;
+    caption.textContent = "Preview coming soon";
+    return;
+  }
+  const m = p.media[k];
+  caption.textContent = (m.caption || "") + (p.media.length > 1 ? ` · ${k + 1}/${p.media.length}` : "");
+  if (m.type === "image") {           // click a picture to open it full size
+    const a = document.createElement("a");
+    a.href = m.src; a.target = "_blank"; a.rel = "noopener"; a.setAttribute("aria-label", "Open full size");
+    a.appendChild(mediaEl(m, false));
+    if (m.width) { frame.classList.add("is-sized"); a.style.maxWidth = m.width + "px"; }
+    frame.appendChild(a);
+  } else {
+    frame.classList.add("is-video");
+    frame.appendChild(mediaEl(m, false));
+    frame.insertAdjacentHTML("beforeend", `<span class="pj-kind">Video</span>`);
+  }
+  if (p.media.length > 1) {
+    p.media.forEach((mm, j) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = j === k ? "is-on" : "";
+      b.setAttribute("aria-label", mm.caption || `Media ${j + 1}`);
+      b.appendChild(mediaEl(mm, true));
+      b.addEventListener("click", () => showMedia(p, j));
+      strip.appendChild(b);
+    });
+  }
+  // if the reader had scrolled down a long picture, bring the new one into view from its top
+  const top = center.getBoundingClientRect().top;
+  if (top < 0) scrollTo({ top: scrollY + top - 28, behavior: reduce ? "auto" : "smooth" });
+}
+
+select(0);
+    

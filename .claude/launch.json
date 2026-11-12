@@ -4,7 +4,10 @@
     {
       "name": "site",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4321"],
+      "runtimeArgs": [
+        "-c",
+        "import http.server\nclass NoCache(http.server.SimpleHTTPRequestHandler):\n    def end_headers(self):\n        self.send_header('Cache-Control', 'no-store')  # always serve the latest files while editing\n        super().end_headers()\nhttp.server.ThreadingHTTPServer(('', 4321), NoCache).serve_forever()"
+      ],
       "port": 4321
     }
   ]

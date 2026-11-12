@@ -1,6 +1,6 @@
 # Project showcase notes (handoff, 2026-11-03)
 
-Content collected for the project cards. The site itself (index.html / styles.css) has not been changed yet: collect first, then build.
+Content collected for the project cards. The showcase is now built into the site (2026-11-11): `index.html` markup, styles at the end of `styles.css` (`pj-` classes), and the project data in `projects.js`.
 
 ## Rules
 
@@ -29,14 +29,32 @@ Repo: https://github.com/yxwvwxy/<repo>
 | 1 | Dictionary + Vocabulary Notebook | Personal | desktop-translator | Confirmed |
 | 2 | Weather °C+°F | Personal | weather-c-f | Confirmed |
 | 3 | Grocery Price Tracker | Personal | grocery | Confirmed, images approved |
-| 4 | Sync & Backup | Personal | backup-tools | Confirmed |
+| 4 | Sync & Backup | Personal | backup-tools | **Removed from the showcase** (2026-11-11) |
 | 5 | Storage Management | Work | unimap-auto-inbound | Confirmed |
 | 6 | Delivery Operation | Work | delivery-pivot | Confirmed |
 | 7 | Pickup Operation | Work | pickup-database | Confirmed |
 | 8 | Sorting Operation | Work | sorting-database | Confirmed, images approved |
 | 9 | Campaign Automation | Work | kotc-marketing | Confirmed, images ready |
 | 10 | Shaken & Sorted | Personal | shaken-and-sorted | **Not started** (first tag: Claude) |
-| 11 | Personal Website | Personal | website | **Not started** (first tag: Cursor) |
+| 11 | Personal Website | Personal | website | **Removed from the showcase** (2026-11-11) |
+
+## Display order (agreed 2026-11-11)
+
+Ranked by the size of the project itself, mixed Work and Personal:
+
+1. Campaign Automation
+2. Sorting Operation
+3. Shaken & Sorted
+4. Pickup Operation
+5. Storage Management
+6. Dictionary + Vocabulary Notebook
+7. Grocery Price Tracker
+8. Weather °C+°F
+9. Delivery Operation
+
+Sync & Backup and Personal Website are not shown on the site.
+
+Layout: a project list on the left that stays in place while the page scrolls. On the right, the card text is on top and the project's media is below; when a project has several pictures, a thumbnail strip appears. Long pictures run at full width and the page scrolls. Phones get a row of project chips instead of the list. All media is in `images/`. To change a project's text, links or media, edit `projects.js`.
 
 ## Cards
 
@@ -52,7 +70,7 @@ Repo: https://github.com/yxwvwxy/desktop-translator
 ```
 
 - Summary notes: lookup and word history in one pinned desktop window; seeing recent words again helps them stick. Auto language detection, IPA and pronunciation, definitions by part of speech with examples, a Recent list that works as the notebook, spell-check suggestions, a menu bar pin, a desktop widget, and launch at login. History is one JSON file in iCloud Drive, shared by the app and the widget and synced across Macs.
-- Image: Vivienne's screenshot (cream UI, burgundy accent) needs to be re-supplied into `images/`. The repo also has `docs/hero.png`.
+- Image: `images/dictionary-hero.png`, shown at 400 px wide (the app window's real size on a Mac), centered.
 
 ### Weather °C+°F
 
@@ -67,7 +85,7 @@ Repo: https://github.com/yxwvwxy/weather-c-f
 
 - Say "macOS app" only; no iOS mention.
 - Summary notes: for people who think in one scale and keep meeting the other. °F and °C side by side for now, the next hours, and the coming days. Current location or a searched city, a desktop pin or a normal window, and small/medium/large widgets that can each pick a city.
-- Image: repo `Design/widget-styles.png` (all three sizes) is the best hero.
+- Image: `images/weather-widgets.png` (large, medium, small, left to right; medium widget color-corrected). Same picture as repo `Design/widget-styles.png`.
 
 ### Grocery Price Tracker
 
@@ -110,7 +128,7 @@ Repo: https://github.com/yxwvwxy/unimap-auto-inbound
 
 - Describe the user interface as the browser. Staff work in the browser. Playwright only records storage status in the dispatch system behind the scenes, because there is no inbound API.
 - Triggers: a Sheet menu queues orders for a local watcher, or a userscript sends order numbers to a local listener. Each order walks a fixed status path into storage, and the whole batch stops on any unexpected status.
-- Media in repo: `demo/inbound-demo.mp4` and `.gif`.
+- Media: `images/storage-inbound.mp4` (copy of repo `demo/inbound-demo.mp4`).
 
 ### Delivery Operation
 
@@ -124,7 +142,7 @@ Repo: https://github.com/yxwvwxy/delivery-pivot
 ```
 
 - Summary notes: the flow is fetch after 10pm → Power BI daily report → Teams group chats. It reports delivery, return, and inactivity rates. Driver inactivity is attributed to the DSP, while warehouse and transit inactivity are counted separately.
-- Media in repo: `docs/daily-performance-report.mp4`.
+- Media: `images/delivery-report.png`, a still of the daily report (also repo `docs/daily-performance-report.png`). No demo button; repo only.
 
 ### Pickup Operation
 
@@ -144,6 +162,7 @@ Repo: https://github.com/yxwvwxy/pickup-database
   4. **Confirm**: check address, state, pallet count, and price (shared truck gets the shared rate, solo gets the solo rate), then cost per unit.
 - Database: carriers, stations, partners, pricing groups and rates, rules, schedules, and a daily cost summary.
 - Scale: 150+ partners, 1,500+ trips, about $450k monthly cost.
+- Media: `images/pickup-demo.mp4` (copy of repo `docs/demo.mp4`, re-recorded 2026-11-11 with centered row numbers).
 
 ### Sorting Operation
 
@@ -173,19 +192,20 @@ Repo: https://github.com/yxwvwxy/kotc-marketing
 
 - Demo is the sample-data Looker Studio dashboard, "MCAT App Campaign Performance Dashboard Demo". Every number is simulated: about $350k of spend in one month across Facebook, TikTok, Google Search Ads and Apple Search Ads. It has six pages: Overview, Funnel, By Ad Partner, By Campaign, Health and Top Ads.
 - Summary notes: a daily and weekly Slack report on Meta app-install campaigns that flags ads with a high 7-day CPI; MMP (Branch) campaign data feeds the Looker Studio dashboard.
-- Images (finished in kotc-marketing/assets and copied into `images/`), 8 in all:
+- Images (finished in kotc-marketing/assets and copied into `images/`), 8 in all, in display order. The site opens on By ad partner (4th) until someone picks another thumbnail.
   - `images/campaign-slack-report.png`: Slack daily report with sample data
-  - `images/campaign-data-flow.png`: connection diagram (Meta → Branch → BigQuery → Looker Studio, and Meta → Slack)
   - `images/campaign-dashboard-overview.png`
   - `images/campaign-dashboard-funnel.png`
   - `images/campaign-dashboard-by-ad-partner.png`
   - `images/campaign-dashboard-by-campaign.png`
   - `images/campaign-dashboard-health.png`
   - `images/campaign-dashboard-top-ads.png`
+  - `images/campaign-data-flow.png`: connection diagram (Meta → Branch → BigQuery → Looker Studio, and Meta → Slack)
 - `drafts/campaign-*.png` and `drafts/scripts/` are the earlier mocks. They are replaced by the images above and are no longer used.
 
 ## Next steps
 
-1. Organize Shaken & Sorted and Personal Website.
+1. Organize Shaken & Sorted.
 2. Polish every Summary in English in one pass.
-3. Build the site. Compress large images first, since some PNGs are over 1 MB.
+3. Compress large images, since some PNGs are over 1 MB.
+4. Fill in the intro (name, tagline, city) and the personal links at the top of `index.html`; they are still placeholders.
