@@ -187,5 +187,14 @@ function showMedia(p, k) {
   if (top < 0) scrollTo({ top: scrollY + top - 28, behavior: reduce ? "auto" : "smooth" });
 }
 
+// The whole list is always shown. When it is taller than the window, it scrolls with the
+// page until its last project is visible, then stays put.
+const side = document.querySelector(".pj-side");
+function fitSide() {
+  const top = Math.min(28, innerHeight - side.offsetHeight - 28);
+  side.style.setProperty("--pj-side-top", top + "px");
+}
+addEventListener("resize", fitSide);
+fitSide();
+
 select(0);
-    

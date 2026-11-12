@@ -73,10 +73,9 @@ body::before {
 }
 
 .page {
-  min-height: 100dvh;
-  max-width: 1120px;
+  max-width: 1480px;
   margin: 0 auto;
-  padding: 44px 48px 40px;
+  padding: 44px 40px 40px;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -135,12 +134,11 @@ body::before {
 }
 
 .stage {
-  flex: 1;
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
   gap: 72px;
   align-items: center;
-  min-height: calc(100dvh - 124px);
+  padding: 24px 0 8px;
 }
 
 .kicker {
@@ -278,7 +276,7 @@ h1 {
     grid-template-columns: 1fr;
     gap: 40px;
     align-items: start;
-    min-height: 0;
+    padding: 8px 0 0;
   }
 
   h1 {
@@ -293,13 +291,6 @@ h1 {
   scroll-margin-top: 28px;
 }
 
-/* on wide screens the projects use more of the window than the intro does */
-@media (min-width: 901px) {
-  .work {
-    margin-inline: calc((100% - min(1480px, 100vw - 80px)) / 2);
-  }
-}
-
 .pj {
   display: grid;
   grid-template-columns: minmax(240px, 0.62fr) minmax(0, 2fr);
@@ -310,10 +301,10 @@ h1 {
 /* the list stays put while the page scrolls */
 .pj-side {
   position: sticky;
-  top: 28px;
+  /* projects.js lowers this on short windows, so the whole list is always reachable */
+  top: var(--pj-side-top, 28px);
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 56px);
 }
 
 .pj-side-head {
@@ -328,7 +319,7 @@ h1 {
   color: var(--accent);
 }
 
-.pj-list { list-style: none; margin: 0; padding: 0; overflow-y: auto; min-height: 0; }
+.pj-list { list-style: none; margin: 0; padding: 0; }
 
 .pj-list button {
   position: relative;
@@ -435,7 +426,7 @@ h1 {
 /* phones and narrow windows: the list becomes a row of chips above the project */
 @media (max-width: 900px) {
   .pj { display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
-  .pj-side { position: static; max-height: none; min-width: 0; }
+  .pj-side { position: static; min-width: 0; }
   .pj-side-head { display: none; }
   .pj-list { display: flex; gap: 8px; overflow-x: auto; overflow-y: hidden; padding-bottom: 4px; }
   .pj-list li { flex: none; }
