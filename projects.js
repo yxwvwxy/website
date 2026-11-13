@@ -18,7 +18,7 @@ const projects = [
       { type: "image", src: IMG + "campaign-data-flow.png", caption: "How the data connects" },
     ] },
   { name: "Sorting Operation", group: "Work", type: "Data pipeline with live dashboard",
-    summary: "A data pipeline and live dashboard that makes sorting data visible to operations and the onsite sort team, helping plan and forecast staffing and transportation for a network of 30+ cities and 210k parcels a day. A Playwright scraper reads sort volumes every 20 minutes, 24/7, and stores them in Supabase, together with a versioned map of which chute serves which city. A dashboard turns the data into city curves, hourly throughput and feed-station volumes.",
+    summary: "A data pipeline and live dashboard that makes sorting data visible to operations and the onsite sort team, helping plan and forecast staffing and transportation for a network of 35+ cities and 210k parcels a day. A Playwright scraper reads sort volumes every 20 minutes, 24/7, and stores them in Supabase, together with a versioned map of which chute serves which city. A dashboard turns the data into city curves, hourly throughput and feed-station volumes.",
     stack: ["Cursor", "Python", "Playwright", "Supabase", "Postgres", "Plotly", "GitHub Pages"],
     demo: "https://yxwvwxy.github.io/sorting-database/ops-day-2026-09-05.html", demoLabel: "Live demo", repo: "sorting-database",
     media: [
@@ -41,7 +41,7 @@ const projects = [
       { type: "image", src: IMG + "shaken-ingredients-palate.png", caption: "Ingredients and palate" },
     ] },
   { name: "Pickup Operation", group: "Work", type: "Web app with Supabase",
-    summary: "A structured database behind a web interface, replacing scattered spreadsheets where no one knew which mapping data was accurate and up to date. It runs a daily pickup desk for 150+ partners and 1,500+ trips, supporting $430k in monthly operations. It splits each carrier's list into trips, matches nicknames to official stations, fills the day's log, and prices each run from a database of carriers, stations and rates.",
+    summary: "A structured database behind a web interface, replacing scattered spreadsheets where no one knew which mapping data was accurate and up to date. It runs a daily pickup desk for 150+ partners and 1,500+ trips, supporting $450k in monthly operations. It splits each carrier's list into trips, matches nicknames to official stations, fills the day's log, and prices each run from a database of carriers, stations and rates.",
     stack: ["Cursor", "Next.js", "TypeScript", "Supabase", "Postgres", "Apps Script", "Google Sheets"],
     demo: "https://yxwvwxy.github.io/pickup-database/mock/demo-playback.html", demoLabel: "Live demo", repo: "pickup-database",
     media: [{ type: "video", src: IMG + "pickup-demo.mp4", caption: "Paste → Parse → Fill → Confirm" }] },

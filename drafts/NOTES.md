@@ -163,7 +163,7 @@ Repo: https://github.com/yxwvwxy/delivery-pivot
 ```
 Pickup Operation
 Product type: Web app with Supabase
-Summary: A structured database behind a web interface, replacing scattered spreadsheets where no one knew which mapping data was accurate and up to date. It runs a daily pickup desk for 150+ partners and 1,500+ trips, supporting $430k in monthly operations. It splits each carrier's list into trips, matches nicknames to official stations, fills the day's log, and prices each run from a database of carriers, stations and rates.
+Summary: A structured database behind a web interface, replacing scattered spreadsheets where no one knew which mapping data was accurate and up to date. It runs a daily pickup desk for 150+ partners and 1,500+ trips, supporting $450k in monthly operations. It splits each carrier's list into trips, matches nicknames to official stations, fills the day's log, and prices each run from a database of carriers, stations and rates.
 Tech Stack: Cursor · Next.js · TypeScript · Supabase · Postgres · Apps Script · Google Sheets
 Demo: https://yxwvwxy.github.io/pickup-database/mock/demo-playback.html
 Repo: https://github.com/yxwvwxy/pickup-database
@@ -175,7 +175,7 @@ Repo: https://github.com/yxwvwxy/pickup-database
   3. **Fill**: write today's log, one partner per row.
   4. **Confirm**: check address, state, pallet count, and price (shared truck gets the shared rate, solo gets the solo rate), then cost per unit.
 - Database: carriers, stations, partners, pricing groups and rates, rules, schedules, and a daily cost summary.
-- Scale: 150+ partners, 1,500+ trips, $430k in monthly operations (Vivienne, 2026-11-12).
+- Scale: 150+ partners, 1,500+ trips, $450k in monthly operations (Vivienne, 2026-11-12).
 - Media: `images/pickup-demo.mp4` (copy of repo `docs/demo.mp4`, re-recorded 2026-11-11 with centered row numbers).
 
 ### Sorting Operation
@@ -183,7 +183,7 @@ Repo: https://github.com/yxwvwxy/pickup-database
 ```
 Sorting Operation
 Product type: Data pipeline with live dashboard
-Summary: A data pipeline and live dashboard that makes sorting data visible to operations and the onsite sort team, helping plan and forecast staffing and transportation for a network of 30+ cities and 210k parcels a day. A Playwright scraper reads sort volumes every 20 minutes, 24/7, and stores them in Supabase, together with a versioned map of which chute serves which city. A dashboard turns the data into city curves, hourly throughput and feed-station volumes.
+Summary: A data pipeline and live dashboard that makes sorting data visible to operations and the onsite sort team, helping plan and forecast staffing and transportation for a network of 35+ cities and 210k parcels a day. A Playwright scraper reads sort volumes every 20 minutes, 24/7, and stores them in Supabase, together with a versioned map of which chute serves which city. A dashboard turns the data into city curves, hourly throughput and feed-station volumes.
 Tech Stack: Cursor · Python · Playwright · Supabase · Postgres · Plotly · GitHub Pages
 Demo: https://yxwvwxy.github.io/sorting-database/ops-day-2026-09-05.html
 Repo: https://github.com/yxwvwxy/sorting-database
