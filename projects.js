@@ -95,9 +95,11 @@ const rows = projects.map((p, i) => {
 function select(i) {
   i = ((i % N) + N) % N;
   if (i === current) return;
+  const first = current === -1;
   current = i;
   rows.forEach((b, j) => b.setAttribute("aria-current", j === i));
-  rows[i].scrollIntoView({ block: "nearest", inline: "nearest", behavior: reduce ? "auto" : "smooth" });
+  // keep the chosen row in view when switching, but don't move the page on first load
+  if (!first) rows[i].scrollIntoView({ block: "nearest", inline: "nearest", behavior: reduce ? "auto" : "smooth" });
   render();
 }
 

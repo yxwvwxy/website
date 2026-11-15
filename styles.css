@@ -124,8 +124,35 @@ body::before {
   color: var(--accent);
 }
 
+/* location, with a boxed button that jumps down to the projects */
+.place-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-top: 28px;
+}
+
+.jump {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--accent);
+  padding: 8px 12px;
+  white-space: nowrap;
+  transition: background 160ms ease;
+}
+
+.jump:hover,
+.jump:focus-visible {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
 .place {
-  margin: 28px 0 0;
+  margin: 0;
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.12em;
@@ -285,6 +312,72 @@ h1 {
 
 }
 
+/* ---------- about: three lines, a timeline, and the milestones behind it ---------- */
+.about {
+  padding: 28px 0 8px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 28px;
+}
+
+.about-lead p {
+  margin: 0 0 6px;
+  /* the three descriptive lines: same size and weight as the link titles (LinkedIn, Resume…) */
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+/* the numbers line and timeline sit at the bottom of the left column, level with the end of the milestones */
+.about-main { display: flex; flex-direction: column; align-self: stretch; }
+.about-bottom { margin-top: auto; padding-top: calc(1.2rem * 1.35 + 6px); }
+
+/* the numbers line: same size as the names (WashU, UniUni…) */
+.about-stat {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: normal;
+  line-height: 1.45;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: start;
+}
+
+.about-main .timeline { margin-top: 24px; }
+
+.timeline { margin: 0; color: var(--muted); }
+/* drawn at 1:1, so its names and dates match the milestones' 15px titles and 11px dates */
+.timeline svg { display: block; width: 100%; max-width: 630px; height: auto; }
+.tl-name { fill: var(--ink); font-family: var(--sans); font-size: 15px; font-weight: 500; }
+.tl-date { fill: var(--muted); font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; }
+.tl-brace { fill: none; stroke: var(--muted); stroke-width: 1; }
+.tl-axis { stroke: var(--ink); stroke-width: 1; color: var(--ink); }
+.tl-dot { fill: var(--accent); }
+
+.milestones { list-style: none; margin: 0; padding: 0; }
+.milestones li { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.milestones li:first-child { padding-top: 0; }
+.milestones li:last-child { border-bottom: 0; }
+.milestones p { margin: 2px 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
+.milestones .ms-head { margin: 0 0 4px; color: var(--ink); font-size: 15px; }
+.ms-head b { font-weight: 500; }
+.ms-head span { margin-left: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--muted); }
+
+/* stack before the timeline column would get narrower than the drawing, so its text never shrinks */
+@media (max-width: 1280px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
+
+/* phones: the timeline's labels would be too small to read; the milestones list carries the same dates */
+@media (max-width: 600px) {
+  .timeline { display: none; }
+}
+
 /* ---------- projects: list on the left, the chosen project on the right ---------- */
 .work {
   padding: 28px 0 48px;
@@ -353,7 +446,7 @@ h1 {
 
 .pj-num { font-family: var(--mono); font-size: 11px; color: var(--muted); }
 .pj-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-.pj-name { font-weight: 500; font-size: clamp(15px, 1.15vw, 18px); line-height: 1.25; color: var(--muted); transition: color 160ms ease; }
+.pj-name { font-weight: 500; font-size: 15px; /* same as the About names (WashU, UniUni…) */ line-height: 1.25; color: var(--muted); transition: color 160ms ease; }
 .pj-ptype { font-size: 13px; line-height: 1.3; color: color-mix(in srgb, var(--muted) 80%, transparent); }
 .pj-grp { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); padding: 2px 5px; }
 
