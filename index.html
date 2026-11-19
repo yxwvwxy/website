@@ -178,5 +178,25 @@
     </main>
 
     <script src="projects.js?v=2026-11-14a"></script>
+    <script>
+      // Side by side, the "4 years" line and its timeline start level with the WashU milestone,
+      // where the timeline begins. Stacked, they keep their place under the lead.
+      (() => {
+        const bottom = document.querySelector(".about-bottom");
+        const stat = document.querySelector(".about-stat");
+        const washu = [...document.querySelectorAll(".milestones .ms-head")].find((h) => h.textContent.includes("WashU"));
+        const stacked = matchMedia("(max-width: 1280px)");
+        function align() {
+          bottom.style.marginTop = bottom.style.paddingTop = "";
+          if (!washu || stacked.matches) return;
+          bottom.style.marginTop = bottom.style.paddingTop = "0px";
+          const gap = washu.getBoundingClientRect().top - stat.getBoundingClientRect().top;
+          bottom.style.paddingTop = Math.max(0, gap) + "px";
+        }
+        addEventListener("resize", align);
+        document.fonts.ready.then(align);
+        align();
+      })();
+    </script>
   </body>
 </html>
