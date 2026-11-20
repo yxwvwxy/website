@@ -95,11 +95,9 @@ const rows = projects.map((p, i) => {
 function select(i) {
   i = ((i % N) + N) % N;
   if (i === current) return;
-  const first = current === -1;
   current = i;
   rows.forEach((b, j) => b.setAttribute("aria-current", j === i));
-  // keep the chosen row in view when switching, but don't move the page on first load
-  if (!first) rows[i].scrollIntoView({ block: "nearest", inline: "nearest", behavior: reduce ? "auto" : "smooth" });
+  // switching projects never moves the page
   render();
 }
 
@@ -108,6 +106,8 @@ list.addEventListener("keydown", (e) => {
   if (e.altKey || e.ctrlKey || e.metaKey) return;
   if (e.key === "ArrowDown") { e.preventDefault(); select(current + 1); rows[current].focus({ preventScroll: true }); }
   if (e.key === "ArrowUp") { e.preventDefault(); select(current - 1); rows[current].focus({ preventScroll: true }); }
+  // with the keyboard, the chosen row may be off screen: bring just that row into view
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") rows[current].scrollIntoView({ block: "nearest" });
 });
 
 /* ---------- right panel ---------- */
@@ -150,6 +150,14 @@ function showMedia(p, k) {
   const frame = document.getElementById("pj-frame");
   const strip = document.getElementById("pj-strip");
   const caption = document.getElementById("pj-caption");
+  // hold the old height while the new picture loads, so the page doesn't shrink and jump
+  if (frame.offsetHeight) frame.style.minHeight = frame.offsetHeight + "px";
+  // the section keeps the tallest height it has had, so a shorter project never pulls the page up
+  const work = document.getElementById("work");
+  const release = () => {
+    work.style.minHeight = work.offsetHeight + "px";
+    frame.style.minHeight = "";
+  };
   frame.innerHTML = "";
   strip.innerHTML = "";
   frame.className = "pj-frame";
@@ -158,6 +166,7 @@ function showMedia(p, k) {
     frame.classList.add("is-empty");
     frame.innerHTML = `<div class="pj-ph">${initials}</div>`;
     caption.textContent = "Preview coming soon";
+    release();
     return;
   }
   const m = p.media[k];
@@ -184,9 +193,9 @@ function showMedia(p, k) {
       strip.appendChild(b);
     });
   }
-  // if the reader had scrolled down a long picture, bring the new one into view from its top
-  const top = center.getBoundingClientRect().top;
-  if (top < 0) scrollTo({ top: scrollY + top - 28, behavior: reduce ? "auto" : "smooth" });
+  const shown = frame.querySelector("img, video");
+  if (!shown || (shown.complete ?? shown.readyState > 0)) release();
+  else { shown.addEventListener("load", release, { once: true }); shown.addEventListener("loadedmetadata", release, { once: true }); shown.addEventListener("error", release, { once: true }); }
 }
 
 // The whole list is always shown. When it is taller than the window, it scrolls with the
@@ -197,6 +206,8 @@ function fitSide() {
   side.style.setProperty("--pj-side-top", top + "px");
 }
 addEventListener("resize", fitSide);
+// a new width reflows everything, so the held height starts over
+addEventListener("resize", () => { document.getElementById("work").style.minHeight = ""; });
 fitSide();
 
 select(0);

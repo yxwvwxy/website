@@ -382,6 +382,8 @@ h1 {
 .work {
   padding: 28px 0 48px;
   scroll-margin-top: 28px;
+  /* switching projects changes the panel's height; keep the page where the reader left it */
+  overflow-anchor: none;
 }
 
 .pj {
