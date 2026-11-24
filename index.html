@@ -60,7 +60,7 @@
             </span>
             <span class="arrow" aria-hidden="true">↗</span>
           </a>
-          <a class="row" href="mailto:vivienneyang710@gmail.com">
+          <a class="row" id="email-row" href="mailto:vivienneyang710@gmail.com" aria-haspopup="true" aria-expanded="false" aria-controls="mail-menu">
             <span class="idx">04</span>
             <span class="copy">
               <span class="label">Email</span>
@@ -68,6 +68,13 @@
             </span>
             <span class="arrow" aria-hidden="true">↗</span>
           </a>
+          <!-- mailto does nothing on computers without a mail app, so Email offers every way in -->
+          <div class="mail-menu" id="mail-menu" hidden>
+            <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=vivienneyang710@gmail.com" target="_blank" rel="noopener">Gmail <span aria-hidden="true">↗</span></a>
+            <a href="https://outlook.live.com/mail/0/deeplink/compose?to=vivienneyang710@gmail.com" target="_blank" rel="noopener">Outlook <span aria-hidden="true">↗</span></a>
+            <a href="mailto:vivienneyang710@gmail.com">Mail app <span aria-hidden="true">↗</span></a>
+            <button type="button" id="mail-copy">Copy address</button>
+          </div>
         </nav>
       </div>
 
@@ -178,6 +185,9 @@
       </section>
     </main>
 
+    <!-- the projects sit below the fold on most screens, so a small cue points to them until they show -->
+    <a class="to-projects" id="to-projects" href="#work" aria-hidden="true" tabindex="-1">↓ Project demos</a>
+
     <script src="projects.js?v=2026-11-19a"></script>
     <script>
       // Side by side, the "4 years" line and its timeline start level with the WashU milestone,
@@ -197,6 +207,41 @@
         addEventListener("resize", align);
         document.fonts.ready.then(align);
         align();
+      })();
+
+      // The "Projects below" cue shows only while the projects are still off screen below
+      (() => {
+        const cue = document.getElementById("to-projects");
+        const work = document.getElementById("work");
+        new IntersectionObserver(([e]) => {
+          const below = !e.isIntersecting && e.boundingClientRect.top > 0;
+          cue.classList.toggle("is-on", below);
+          cue.setAttribute("aria-hidden", !below);
+          cue.tabIndex = below ? 0 : -1;
+        }).observe(work);
+      })();
+
+      // Email opens a small menu: Gmail, Outlook, the mail app, or copy the address
+      (() => {
+        const row = document.getElementById("email-row");
+        const menu = document.getElementById("mail-menu");
+        const copyBtn = document.getElementById("mail-copy");
+        const address = "vivienneyang710@gmail.com";
+        const setOpen = (open) => { menu.hidden = !open; row.setAttribute("aria-expanded", open); };
+        row.addEventListener("click", (e) => { e.preventDefault(); setOpen(menu.hidden); });
+        document.addEventListener("click", (e) => { if (!menu.hidden && !menu.contains(e.target) && !row.contains(e.target)) setOpen(false); });
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !menu.hidden) { setOpen(false); row.focus(); } });
+        menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
+        copyBtn.addEventListener("click", async () => {
+          try { await navigator.clipboard.writeText(address); }
+          catch {
+            const t = document.createElement("textarea");
+            t.value = address; t.style.position = "fixed"; t.style.opacity = "0";
+            document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove();
+          }
+          copyBtn.textContent = "Copied ✓";
+          setTimeout(() => { copyBtn.textContent = "Copy address"; }, 1800);
+        });
       })();
     </script>
   </body>

@@ -139,16 +139,20 @@ body::before {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--ink);
+  font-weight: 500;
+  color: var(--on-accent);
+  background: var(--accent);
   border: 1px solid var(--accent);
   padding: 8px 12px;
   white-space: nowrap;
-  transition: background 160ms ease;
+  transition: background 160ms ease, border-color 160ms ease;
 }
 
 .jump:hover,
 .jump:focus-visible {
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  background: color-mix(in srgb, var(--accent) 82%, var(--ink));
+  border-color: color-mix(in srgb, var(--accent) 82%, var(--ink));
+  outline: none;
 }
 
 .place {
@@ -197,6 +201,83 @@ h1 {
 .links {
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+/* "↓ Project demos": floats at the bottom until the projects come into view */
+.to-projects {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 30;
+  padding: 12px 18px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 8px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+.to-projects.is-on {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+.to-projects:hover,
+.to-projects:focus-visible {
+  background: color-mix(in srgb, var(--accent) 82%, var(--ink));
+  outline: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .to-projects { transition: none; }
+}
+
+/* Email's choices drop down over the page, so opening them moves nothing */
+.mail-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+.mail-menu[hidden] { display: none; }
+.mail-menu a,
+.mail-menu button {
+  padding: 12px 16px;
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: none;
+  color: var(--ink);
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.mail-menu > :first-child { border-left: 0; }
+.mail-menu a:hover,
+.mail-menu a:focus-visible,
+.mail-menu button:hover,
+.mail-menu button:focus-visible {
+  background: var(--row);
+  color: var(--accent);
+  outline: none;
+}
+@media (max-width: 520px) {
+  .mail-menu { left: 0; grid-template-columns: repeat(2, 1fr); }
+  .mail-menu > :nth-child(3) { border-left: 0; }
+  .mail-menu > :nth-child(n + 3) { border-top: 1px solid var(--line); }
 }
 
 .row {
@@ -211,7 +292,7 @@ h1 {
   transition: background 160ms ease;
 }
 
-.row:last-child {
+.row:last-of-type {
   border-bottom: 1px solid var(--line);
 }
 
